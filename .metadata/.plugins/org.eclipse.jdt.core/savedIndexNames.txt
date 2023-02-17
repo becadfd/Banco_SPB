@@ -1,0 +1,4 @@
+INDEX VERSION 1.131+C:\Users\User\Banco\.metadata\.plugins\org.eclipse.jdt.core
+954003869.index
+2071101411.index
+1865797976.index

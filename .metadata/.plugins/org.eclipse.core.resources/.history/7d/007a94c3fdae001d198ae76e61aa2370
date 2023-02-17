@@ -1,0 +1,86 @@
+package banco;
+
+import java.util.Scanner;
+
+import banco.model.Conta;
+import banco.util.Cores;
+
+public class menu {
+	public static void main(String[] args) {
+		Scanner ler = new Scanner(System.in);
+
+		// Criamos o objeto conta c1
+		Conta c1 = new Conta(1, 123, 1, "Rebeca Damas", 30000.0f);
+
+		// Visualizamos os dados da Conta c1
+		c1.visualizar();
+
+		// Alteramos o Saldo da Conta c1
+		c1.setSaldo(35000.0f);
+
+		// Visualizamos apenas o Saldo da Conta c1
+		System.out.println("            "c1.getSaldo());
+
+		// Criamos a Conta c2
+		Conta c2 = new Conta(2, 123, 2, "Gabriel Farias", 50000.0f);
+
+		// Visualizamos a Conta c2
+		c2.visualizar();
+
+		// Efetuamos um Saque na Conta c2 e visualizamos o novo Saldo
+		if (c2.sacar(1000.0f))
+			System.out.println("\n\n" + c2.getSaldo());
+
+		// Efetuamos um Depósito na Conta c1
+		c1.depositar(10000.f);
+
+		// Visualizamos os dados da Conta c1 após o Depósito
+		c1.visualizar();
+
+		int opcao = 0;
+
+		while (true) {
+			System.out.println(Cores.TEXT_RED_BOLD_BRIGHT + Cores.ANSI_BLACK_BACKGROUND + "****************************************************************");
+			System.out.println("                                                                ");
+			System.out.println("                 💰Banco Social Prime Brasil💰                   ");
+			System.out.println("                                                                ");
+			System.out.println("****************************************************************");
+			System.out.println("                                                                ");
+			System.out.println("               1 - Criar Conta                                  ");
+			System.out.println("               2 - Listar todas as Contas                       ");
+			System.out.println("               3 - Buscar Conta por Número                      ");
+			System.out.println("               4 - Atualizar Dados da Conta                     ");
+			System.out.println("               5 - Apagar Conta                                 ");
+			System.out.println("               6 - Sacar                                        ");
+			System.out.println("               7 - Depositar                                    ");
+			System.out.println("               8 - Transferir valores entre Contas              ");
+			System.out.println("               9 - Sair                                         ");
+			System.out.println("                                                                ");
+			System.out.println("****************************************************************");
+			System.out.println("Entre com a opção desejada:                                     ");
+			System.out.println("                                                                " + Cores.TEXT_RESET);
+
+			opcao = ler.nextInt();
+
+			if (opcao == 9) {
+				System.out.println("\nBanco Social Prime Brasil agradece a sua visita - O banco que te acompanha!");
+				ler.close();
+				System.exit(0);
+			}
+
+			switch (opcao) {
+			case 1 -> System.out.println("Criar conta\n\n");
+			case 2 -> System.out.println("Listar todas as contas\n\n");
+			case 3 -> System.out.println("Buscar Conta por Número\n\n");
+			case 4 -> System.out.println("Atualizar Dados da Conta\n\n");
+			case 5 -> System.out.println("Apagar conta \n\n");
+			case 6 -> System.out.println("Sacar\n\n");
+			case 7 -> System.out.println("Depositar\n\n");
+			case 8 -> System.out.println("Transferir Valores Entre Contas\n\n");
+			default -> System.err.println("Opção Inválida!\n");
+			}
+
+		}
+	}
+
+}
