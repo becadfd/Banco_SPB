@@ -3,6 +3,8 @@ package banco;
 import java.util.Scanner;
 
 import banco.model.Conta;
+import banco.model.ContaCorrente;
+import banco.model.ContaPoupança;
 import banco.util.Cores;
 
 public class menu {
@@ -37,10 +39,29 @@ public class menu {
 		// Visualizamos os dados da Conta c1 após o Depósito
 		c1.visualizar();
 
+		// Teste da Conta Corrente
+		ContaCorrente cc1 = new ContaCorrente(3, 123, 1, "Vitória", 30000f, 1000f);
+		cc1.visualizar();
+		cc1.sacar(32000);
+		cc1.visualizar();
+
+		System.out.println("\n");
+
+		// Teste da Conta Poupança
+		ContaPoupança cp1 = new ContaPoupança(4, 123, 2, "Taylor", 40000f, 4);
+		cp1.visualizar();
+		System.out.println("\n");
+		cp1.sacar(100);
+		cp1.visualizar();
+		System.out.println("\n");
+		cp1.depositar(500);
+		cp1.visualizar();
+
 		int opcao = 0;
 
 		while (true) {
-			System.out.println(Cores.TEXT_RED_BOLD_BRIGHT + Cores.ANSI_BLACK_BACKGROUND + "****************************************************************");
+			System.out.println(Cores.TEXT_RED_BOLD_BRIGHT + Cores.ANSI_BLACK_BACKGROUND
+					+ "****************************************************************");
 			System.out.println("                                                                ");
 			System.out.println("                 💰Banco Social Prime Brasil💰                   ");
 			System.out.println("                                                                ");

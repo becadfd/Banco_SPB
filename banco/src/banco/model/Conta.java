@@ -82,15 +82,14 @@ public class Conta {
 
 		}
 
-		System.out.println(Cores.TEXT_BLACK_BOLD_BRIGHT + Cores.ANSI_RED_BACKGROUND_BRIGHT
-				+ "****************************************************************");
+		System.out.println("****************************************************************");
 		System.out.println("                   ✦   Dados da Conta   ✦                       ");
 		System.out.println("****************************************************************");
-		System.out.println("                   Numero da Conta:" + this.numero + "                            ");
-		System.out.println("                   Numero da Agência:" + this.agencia + "                        ");
-		System.out.println("                   Tipo da Conta:" + tipo + "                 ");
-		System.out.println("                   Nome do Titular:" + this.titular + "                 ");
-		System.out.println("                   Saldo da Conta:" + this.saldo + "                       ");
+		System.out.println("Numero da Conta:" + this.numero + "                                               ");
+		System.out.println("Numero da Agência:" + this.agencia + "                                           ");
+		System.out.println("Tipo da Conta:" + tipo + "                                    ");
+		System.out.println("Nome do Titular:" + this.titular + "                                    ");
+		System.out.println("Saldo da Conta:" + this.saldo + "                                          ");
 
 	}
 
