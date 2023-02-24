@@ -1,7 +1,5 @@
 package banco.model;
 
-import banco.util.Cores;
-
 public abstract class Conta {
 
 	private int numero;
