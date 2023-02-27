@@ -178,12 +178,23 @@ public class menu {
 				System.out.println("Valor do Saque: ");
 				valor = ler.nextFloat();
 
+				contas.sacar(numero, valor);
+
 				// chamada para o método sacar
 
 				keyPress();
 			}
 			case 7 -> {
 				System.out.println("Depositar\n\n");
+
+				System.out.println("Número da Conta: ");
+				numero = ler.nextInt();
+
+				System.out.println("Valor do Depósito: ");
+				valor = ler.nextFloat();
+
+				contas.depositar(numero, valor);
+
 				keyPress();
 			}
 			case 8 -> {
@@ -198,6 +209,7 @@ public class menu {
 				System.out.println("Valor da Transferência: ");
 				valor = ler.nextFloat();
 
+				contas.transferir(numero, numeroDestino, valor);
 				keyPress();
 			}
 			default -> {

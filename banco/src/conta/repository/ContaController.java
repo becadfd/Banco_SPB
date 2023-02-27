@@ -1,19 +1,21 @@
 package conta.repository;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import banco.model.Conta;
 
 public class ContaController implements ContaRepository {
 
 	private ArrayList<Conta> listaContas = new ArrayList<Conta>();
+	int numero = 0;
 
 	@Override
 	public void procurarPorNumero(int numero) {
-		var conta = buscarNaCollection(numero);
+		Optional<Conta> conta = buscarNaCollection(numero);
 
-		if (conta != null)
-			conta.visualizar();
+		if (conta.isPresent())
+			conta.get().visualizar();
 		else
 			System.out.println("\nA conta número " + numero + " nao foi encontrada!");
 	}
@@ -61,33 +63,58 @@ public class ContaController implements ContaRepository {
 
 	@Override
 	public void sacar(int numero, float valor) {
-		// TODO Auto-generated method stub
+		Optional<Conta> buscaConta = buscarNaCollection(numero);
+
+		if (buscaConta.isPresent()) {
+			if (buscaConta.get().sacar(valor) == true)
+				System.out.println("Saque efetuado com sucesso!");
+		} else {
+			System.out.println("\nA conta número " + numero + " nao foi encontrada!");
+		}
 
 	}
 
 	@Override
 	public void depositar(int numero, float valor) {
-		// TODO Auto-generated method stub
+		Optional<Conta> contaD = buscarNaCollection(numero);
+
+		if (contaD.isPresent()) {
+			contaD.get().depositar(valor);
+			System.out.println("Depósito efetuado com sucesso!");
+		} else {
+			System.out.println("\nA conta número " + numero + " nao foi encontrada!");
+		}
 
 	}
 
 	@Override
 	public void transferir(int numero, int numeroDestino, float valor) {
-		// TODO Auto-generated method stub
+		Optional<Conta> contaOrigem = buscarNaCollection(numero);
+		Optional<Conta> contaDestino = buscarNaCollection(numeroDestino);
+
+		if (contaOrigem != null && contaDestino != null) {
+			if (contaOrigem.get().sacar(valor) == true) {
+				contaDestino.get().depositar(valor);
+				System.out.println("Transferencia efetuada com sucesso!");
+			} else {
+				System.out.println(
+						"\nA conta de Origem e/ou Destino " + numero + " nao foi/foram encontrada/encontradas!");
+			}
+		}
 
 	}
 	/* Implementar métodos auxiliares */
 
 	public int gerarNumero() {
-		return listaContas.size() + 1;
+		return ++numero;
 	}
 
-	public Conta buscarNaCollection(int numero) {
+	public Optional<Conta> buscarNaCollection(int numero) {
 		for (var conta : listaContas) {
 			if (conta.getNumero() == numero)
-				return conta;
+				return Optional.ofNullable(conta);
 		}
-		return null;
+		return Optional.empty();
 	}
 
 	public int retornaTipo(int numero) {
